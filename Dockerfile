@@ -1,8 +1,8 @@
-# Force linux/amd64 to avoid exec format errors on Railway
-FROM --platform=linux/amd64 kestra/kestra:latest-lts
+# Minimal image from Kestra
+FROM kestra/kestra:latest
 
-# Expose the web UI port
-EXPOSE 8080
+# Put your config in the image (or mount via env var below)
+COPY config.yml /app/config.yml
 
-# Default command runs Kestra standalone server
-CMD ["server", "standalone"]
+# Default command can be overridden per Railway service
+CMD ["server", "standalone", "-c", "/app/config.yml"]
