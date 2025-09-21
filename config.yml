@@ -1,0 +1,17 @@
+datasource:
+  url: ${DATABASE_URL}     # Railway will inject this from the Postgres plugin
+  driverClassName: org.postgresql.Driver
+
+storage:
+  type: local
+  local:
+    basePath: /app/storage  # mount a Railway volume here for persistence
+
+# (Optional) auth bootstrap for OSS:
+security:
+  basic-auth:
+    enabled: true
+    users:
+      - username: ${KESTRA_USERNAME}
+        password: ${KESTRA_PASSWORD}
+        roles: ["ADMIN"]
