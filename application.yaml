@@ -21,11 +21,10 @@ kestra:
   url: ${PUBLIC_URL:`http://localhost:8080/`}
 
   # Identity management (new auth system)
-  identity:
-    type: database
-    bootstrap:
-      email: ${ADMIN_EMAIL:`[email protected]`}
-      password: ${ADMIN_PASSWORD:`change-me-please`}
+  server:
+    basicAuth:
+      username: ${KESTRA_USERNAME:`[email protected]`}
+      password: ${KESTRA_PASSWORD:`change-me-please`}
 
 # --- Health/metrics ---
 endpoints:
