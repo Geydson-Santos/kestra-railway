@@ -8,8 +8,6 @@ RUN mkdir -p /etc/kestra /app/flows
 
 # Copy config & example flows
 COPY application.yaml /etc/kestra/application.yaml
-COPY flows /app/flows
-
 # Expose UI (8080) and monitoring (8081)
 EXPOSE 8080 8081
 
