@@ -16,7 +16,8 @@ kestra:
   storage:
     type: local
     local:
-      basePath: /data/storage
+      # use a writable path inside the image
+      basePath: /app/storage
 
   url: ${PUBLIC_URL:`http://localhost:8080/`}
 
