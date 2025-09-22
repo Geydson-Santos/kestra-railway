@@ -1,4 +1,4 @@
-# --- Database (PostgreSQL on Railway) ---
+# --- Database ---
 datasources:
   postgres:
     url: ${KESTRA_PG_URL}
@@ -6,40 +6,26 @@ datasources:
     username: ${KESTRA_PG_USER}
     password: ${KESTRA_PG_PASSWORD}
 
-# --- Core Kestra bits ---
+# --- Kestra core ---
 kestra:
-  # Use Postgres for queue & repository (prod recommendation)
   queue:
     type: postgres
   repository:
     type: postgres
 
-  # Internal storage for inputs/outputs/artifacts.
   storage:
     type: local
     local:
       basePath: /data/storage
 
-  # UI & API URL (optional but nice for links in the UI)
   url: ${PUBLIC_URL:`http://localhost:8080/`}
 
-  # Basic auth
   server:
     basicAuth:
       username: ${KESTRA_USERNAME:`[email protected]`}
       password: ${KESTRA_PASSWORD:`change-me-please`}
 
-  # Default task runner: PROCESS (Railway doesn't provide Docker-in-Docker)
-  tasks:
-    defaults:
-      io.kestra.plugin.scripts.python.Commands:
-        taskRunner:
-          type: io.kestra.plugin.core.runner.Process
-      io.kestra.plugin.scripts.shell.Commands:
-        taskRunner:
-          type: io.kestra.plugin.core.runner.Process
-
-# --- Monitoring / health endpoints (Prometheus, health, etc.) ---
+# --- Health/metrics ---
 endpoints:
   all:
     port: 8081
