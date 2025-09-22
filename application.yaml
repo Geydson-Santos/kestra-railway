@@ -1,7 +1,6 @@
 # --- Database (PostgreSQL on Railway) ---
 datasources:
   postgres:
-    # Railway Postgres URL; set as env var KESTRA_PG_URL (see .env.example)
     url: ${KESTRA_PG_URL}
     driverClassName: org.postgresql.Driver
     username: ${KESTRA_PG_USER}
@@ -16,7 +15,6 @@ kestra:
     type: postgres
 
   # Internal storage for inputs/outputs/artifacts.
-  # For Railway Volumes, mount e.g. /data and point basePath there.
   storage:
     type: local
     local:
@@ -25,10 +23,9 @@ kestra:
   # UI & API URL (optional but nice for links in the UI)
   url: ${PUBLIC_URL:`http://localhost:8080/`}
 
-  # Basic auth is required on recent versions; set via env
+  # Basic auth
   server:
     basicAuth:
-      # enabled flag is ignored on newer versions—just set credentials
       username: ${KESTRA_USERNAME:`[email protected]`}
       password: ${KESTRA_PASSWORD:`change-me-please`}
 
@@ -46,11 +43,3 @@ kestra:
 endpoints:
   all:
     port: 8081
-
-# --- Namespaces / flows folder on container ---
-kestra:
-  # Micronaut config supports env placeholders; keeping flows on /app/flows
-  # Flows can also be created via UI/API; this just seeds an example.
-  #
-  # No extra config needed for scanning files when using the UI,
-  # but you can also use Namespace Files in the UI if you prefer.
