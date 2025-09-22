@@ -14,4 +14,4 @@ EXPOSE 8080 8081
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=5 \
   CMD wget -qO- http://127.0.0.1:8081/health/readiness || exit 1
 
-CMD ["kestra", "server", "standalone", "--config", "/app/config/application.yaml"]
+CMD ["server", "standalone", "--config", "/app/config/application.yaml"]
