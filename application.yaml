@@ -16,7 +16,7 @@ kestra:
   storage:
     type: local
     local:
-      basePath: /data/storage
+      basePath: /app/storage
 
   url: ${PUBLIC_URL:`http://localhost:8080/`}
 
