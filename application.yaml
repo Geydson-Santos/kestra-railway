@@ -18,6 +18,10 @@ kestra:
     local:
       basePath: /app/storage
 
+  tasks:
+    tmpDir:
+      path: /home/kestra/tmp
+
   url: ${PUBLIC_URL:`http://localhost:8080/`}
 
   # Identity management (new auth system)
